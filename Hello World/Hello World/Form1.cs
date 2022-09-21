@@ -12,6 +12,11 @@ namespace Hello_World
 {
     public partial class Form1 : Form
     {
+        private int Count_num = 0;
+
+        Timer CountTen_timer = new Timer();
+        Timer DateTime_timer = new Timer();
+
         public Form1()
         {
             InitializeComponent();
@@ -22,46 +27,37 @@ namespace Hello_World
             labHelloWorld.Text = "Hello World!";
         }
 
-        Timer timer1 = new Timer();
-        private int num = 0;
-        private void btnCount_Click(object sender, EventArgs e)
+        private void CountTen(object sender, EventArgs e)
         {
-            //for (int i = 0; i <= 10; i++)
-            //{
-            //    labCount.Text = i.ToString();
-            //    System.Threading.Thread.Sleep(500);
-            //    labCount.Update();
-            //}
-            timer1.Interval = 500;
-            timer1.Start();
-            timer1.Tick += new EventHandler(Count);
+            if (Count_num == 10)
+            {
+                CountTen_timer.Stop();
+            }
+            else if (Count_num < 10)
+            {
+                Count_num++;
+                labCount.Text = Count_num.ToString();
+            }
         }
 
-        private void Count(object sender, EventArgs e)
+        private void btnCount_Click(object sender, EventArgs e)
         {
-            if (num==10)
-            {
-                timer1.Stop();
-            }
-            else if(num<10)
-            {
-                num++;
-                labCount.Text = num.ToString();
-            }
+            CountTen_timer.Interval = 500;
+            CountTen_timer.Start();
+            CountTen_timer.Tick += new EventHandler(CountTen);
+        }
+
+        private void Time_Change_Interval(object sender, EventArgs e)
+        {
+            labDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            timer2.Enabled = true;
-            timer2.Start();
-            timer2.Tick += new EventHandler(DateTime_tick);
+            DateTime_timer.Enabled = true;
+            DateTime_timer.Start();
+            DateTime_timer.Tick += new EventHandler(Time_Change_Interval);
 
-        }
-
-        Timer timer2 = new Timer();
-        private void DateTime_tick(object sender, EventArgs e)
-        {
-            labDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }
     }
 }
