@@ -24,35 +24,29 @@ namespace Hello_World
             labHelloWorld.Text = "Hello World!";
         }
 
-        async private void CountTen()
-        {
-            for (int CountNumber = 0; CountNumber <= 10; CountNumber++)
-            {
-                labCount.Text = CountNumber.ToString();
-                await Task.Delay(500);
-            }
-        }
         private void btnCount_Click(object sender, EventArgs e)
         {
-            Action UpdateNumber = new Action(CountTen);
-            Task DisplayNumber = new Task(UpdateNumber);
-            DisplayNumber.Start();
+            Task.Run(async() =>
+            {
+                for (int CountNumber = 0; CountNumber <= 10; CountNumber++)
+                {
+                    labCount.Text = CountNumber.ToString();
+                    await Task.Delay(500);
+                }
+            });
+
         }
 
-        async private void TimeChange()
-        {
-            while (true)
-            {
-                labDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-                await Task.Delay(1000);
-            }
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Action UpdateTime = new Action(TimeChange);
-            Task DisplayTime = new Task(UpdateTime);
-            DisplayTime.Start();
+            Task.Run(async() =>{
+                while (true)
+                {
+                    labDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                    await Task.Delay(1000);
+                }
+            });
 
         }
 
