@@ -17,6 +17,7 @@ namespace Hello_World
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            Application.DoEvents();
         }
     }
 }
