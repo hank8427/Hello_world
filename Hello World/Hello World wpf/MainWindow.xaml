@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="145*"/>
+            <RowDefinition Height="145*"/>
+            <RowDefinition Height="104*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="labDateTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" Margin="178,0,0,0">yyyy/MM/dd HH:mm:ss</TextBlock>
+        <Button Click="btnSay_Click" Grid.Column="0" Grid.Row="1" FontSize="40" Margin="0,0,0,104" Grid.RowSpan="2">Say Hello</Button>
+        <Button Click="btnCount_Click"  Grid.Column="1" Grid.Row="1" FontSize="40" Margin="0,0,0,104" Grid.RowSpan="2" Grid.ColumnSpan="2" >Count to 10</Button>
+        <TextBlock Name="labHelloWorld" Grid.Row="2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,47,0,0">" "</TextBlock>
+        <TextBlock Name ="labCount" Grid.Column="1" Grid.Row="2" FontSize="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="188,47,0,0">0</TextBlock>
     </Grid>
 </Window>
